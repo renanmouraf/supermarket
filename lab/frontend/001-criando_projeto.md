@@ -34,12 +34,12 @@ Cuidado para alterar somente o bloco indicado e não mexer no resto do arquivo.
 
 `angular.json​`
 ```json
-"styles"​: [
-​"./node_modules/primeflex/primeflex.css"​,
-​"./node_modules/primeicons/primeicons.css"​,
-​"./node_modules/primeng/resources/themes/nova-light/theme.css"​,
-​"./node_modules/primeng/resources/primeng.min.css"​,
-​"src/styles.scss"
+"styles": [
+  "./node_modules/primeflex/primeflex.css",
+  "./node_modules/primeicons/primeicons.css",
+  "./node_modules/primeng/resources/themes/nova/theme.css",
+  "./node_modules/primeng/resources/primeng.min.css",
+  "src/styles.scss"
 ],
 ```
 
