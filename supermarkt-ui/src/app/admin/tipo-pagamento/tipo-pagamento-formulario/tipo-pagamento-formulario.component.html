@@ -1,0 +1,41 @@
+<div class="container">
+        <form autocomplete="false" [formGroup]="tipoForm" (ngSubmit)="onSubmit(tipoForm.value)">
+           <div class="p-grid">
+                <div class="p-col-12">
+                    <h1>Cadastro de Tipo de Pagamento</h1>
+                </div>
+           </div>
+    
+           <div class="p-grid">
+                <div class="p-col-12">
+                    <p style="font-style:italic; font-size: 0.9em;">Os campos com o simbolo asterisco (*) são de preenchimento obrigatório</p>
+                </div>
+           </div>
+    
+            <div class="p-grid">
+                <div class="p-col-4 p-lg-4 p-md-4 p-sm-4">
+                    <label for="nome">Nome *:</label>
+                    <input type="text" pInputText id="nome" name="nome" 
+                            formControlName="nome" maxlength="50" 
+                            pattern="[a-zA-Z-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*"/>
+    
+                    <p-message severity="error" [text]="tipoForm.controls['nome'].errors['required'] ? 'Nome é obrigatório' : tipoForm.controls['nome'].errors['pattern'] ? 'Só é permitido letras para esse campo' : ''"
+                            *ngIf="!tipoForm.controls['nome'].valid&&tipoForm.controls['nome'].dirty"></p-message>
+                </div>
+
+                <div class="p-col-4 p-lg-4 p-md-4 p-sm-4">
+                        <label for="forma">Forma de Pagamento *:</label>
+                        <p-dropdown [options]="formas" formControlName="forma" optionLabel="descricao"></p-dropdown>
+        
+                        <p-message severity="error" [text]="tipoForm.controls['forma'].errors['required'] ? 'Forma é obrigatório' : tipoForm.controls['forma'].errors['pattern'] ? 'Só é permitido letras para esse campo' : ''"
+                                *ngIf="!tipoForm.controls['forma'].valid&&tipoForm.controls['forma'].dirty"></p-message>
+                </div>
+            
+                <div class="p-col-12">
+                    <button pButton type="submit" style="margin-right: 10px" [disabled]="formInvalid()" label="Salvar" class="ui-button-info"></button>
+                    <button pButton type="button" routerLink="/admin/tipos-pagamentos" label="Cancelar" class="ui-button-secondary"></button>
+                </div>
+            </div>
+    
+        </form>
+    </div>

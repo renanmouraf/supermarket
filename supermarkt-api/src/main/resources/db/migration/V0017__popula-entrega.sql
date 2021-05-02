@@ -1,0 +1,1 @@
+insert into entrega (id, nome_do_cliente, cpf_do_cliente, email_do_cliente, telefone_do_cliente, cep, endereco, complemento, pedido_id) values (1, 'Renan Ferreira', '000.000.001-91', 'renan@email.com', '1234-5678', '66040152', 'AV BRASIL', 'EDIFÍCIO JK', 1);

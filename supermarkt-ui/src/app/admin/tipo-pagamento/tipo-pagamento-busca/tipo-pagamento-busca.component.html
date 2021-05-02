@@ -1,0 +1,21 @@
+<div class="container">
+    <p-confirmDialog [style]="{width: '425px'}"></p-confirmDialog>
+    <div class="p-grid">
+        <div class="p-col-12">
+            <h1>Pesquisa de Tipos de Pagamento</h1>
+        </div>
+        
+        <div class="p-col-12">
+            <button pButton type="button" label="Novo tipo pagamento" routerLink="/admin/tipos-pagamentos/novo"></button>
+        </div>
+
+        <div class="p-col-6">
+            <input type="text" [ngModel]="inputSearch" (ngModelChange)="getTiposDePagamentoByName($event)" pInputText placeholder="Buscar tipos de pagamentos..."/>
+        </div>
+
+        <div class="p-col-12">
+            <app-tipo-pagamento-grade (delete)="dialogDelete($event)" [tipos]="tipos"></app-tipo-pagamento-grade>
+        </div>
+    </div>
+</div>
+    

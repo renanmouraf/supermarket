@@ -1,0 +1,13 @@
+h2 {
+    margin-top: 10;
+    margin-bottom: 10px;
+}
+
+input[type=text], input[type=password] {
+    width: 20%;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}

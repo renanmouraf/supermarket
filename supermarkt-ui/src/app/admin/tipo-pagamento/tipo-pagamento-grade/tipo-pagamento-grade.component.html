@@ -1,0 +1,25 @@
+<p-table [value]="tipos" [paginator]="true" [rows]="5" [scrollable]="true">
+    <ng-template pTemplate="header">
+        <tr>
+            <th class="col-btns"></th>
+            <th class="col-id">ID</th>
+            <th class="col-name">Nome</th>
+            <th class="col-tipo">Forma</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-tipo>
+        <tr>
+            <td class="col-content-btns">
+                <p-button class="btn-editar" icon="pi pi-pencil" pTooltip="Editar" [routerLink]="['/admin/tipos-pagamentos', tipo.id]" tooltipPosition="bottom"></p-button>
+                <p-button icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="bottom" (onClick)="handleDelete(tipo)"></p-button>
+            </td>
+            <td class="col-content-id">{{tipo.id}}</td>
+            <td class="col-content-name">{{tipo.nome | titlecase}}</td>
+            <td class="col-content-tipo">{{tipo.forma | formaPagamento | titlecase }}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        Nenhum registro encontrado.
+    </ng-template>
+</p-table>
+    

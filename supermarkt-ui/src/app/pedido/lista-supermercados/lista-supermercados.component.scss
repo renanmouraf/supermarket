@@ -1,0 +1,17 @@
+.favorite_icon {
+    position: relative;
+    float: right;
+    bottom: 35px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.favoritado {
+    color: red;
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+  
