@@ -1,0 +1,32 @@
+<div class="container">
+    <div >
+        <h1>Supermercados</h1>
+    </div>
+
+    <div class="p-grid">
+        <div *ngFor="let supermercadoComAvaliacao of supermercadosComAvaliacao">
+            <div appFade class="p-col">
+                
+                <p-card header="{{supermercadoComAvaliacao.supermercado.nome}}" 
+                        subheader=""
+                        [style]="{width: '260px'}" styleClass="ui-card-shadow">
+
+                    <span class='favorite_icon' *ngIf="!supermercadoComAvaliacao.supermercado.favorito"
+                    (click)="favoritar(supermercadoComAvaliacao.supermercado)">&#9825;</span>
+                    <span class='favorite_icon favoritado' *ngIf="supermercadoComAvaliacao.supermercado.favorito"
+                    (click)="favoritar(supermercadoComAvaliacao.supermercado)">&#9829;</span>
+                    
+                    <p-rating [ngModel]="supermercadoComAvaliacao.mediaDasAvaliacoes" readonly="true" stars="5" [cancel]="false"></p-rating>
+                    <span *ngIf="supermercadoComAvaliacao.supermercado.tempoDeEntregaMinimoEmMinutos"> Entrega: {{supermercadoComAvaliacao.supermercado.tempoDeEntregaMinimoEmMinutos}} min</span>
+                    <span *ngIf="supermercadoComAvaliacao.supermercado.tempoDeEntregaMaximoEmMinutos"> - {{supermercadoComAvaliacao.supermercado.tempoDeEntregaMaximoEmMinutos}} min</span>
+                    <p>Taxa: {{ supermercadoComAvaliacao.supermercado.taxaDeEntregaEmReais | currency:'BRL' }}</p>
+                    <p-footer>
+                        <button pButton 
+                        [routerLink]="['/pedidos/supermercado/', supermercadoComAvaliacao.supermercado.id]"
+                        type="button" label="Escolher" icon="pi pi-check" style="margin-right: .25em"></button>
+                    </p-footer>
+                </p-card>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<div class="container">
+    <form autocomplete="false" [formGroup]="supermercadoForm" (ngSubmit)="onSubmit(supermercadoForm.value)">
+       <div class="p-grid">
+            <div class="p-col-12">
+                <h1>Cadastro de Supermercado</h1>
+            </div>
+       </div>
+
+       <div class="p-grid">
+            <div class="p-col-12">
+                <p style="font-style:italic; font-size: 0.9em;">Os campos com o simbolo asterisco (*) são de preenchimento obrigatório</p>
+            </div>
+       </div>
+
+        <div class="p-grid">
+            <div class="p-col-4 p-lg-4 p-md-4 p-sm-4">
+                <label>Nome *:</label>
+                <input type="text" pInputText formControlName="nome" maxlength="50" pattern="[a-zA-Z-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*"/>
+                <p-message severity="error" [text]="supermercadoForm.controls['nome'].errors['required'] ? 'Nome é obrigatório' : supermercadoForm.controls['nome'].errors['pattern'] ? 'Só é permitido letras para esse campo' : ''"
+                        *ngIf="!supermercadoForm.controls['nome'].valid&&supermercadoForm.controls['nome'].dirty"></p-message>
+            </div>
+
+            <div class="p-col-4 p-lg-4 p-md-4 p-sm-4">
+                <label>CNPJ *:</label>
+                <input type="text" pInputText formControlName="cnpj" maxlength="50"/>
+                <p-message severity="error" text="CNPJ é obrigatório" *ngIf="!supermercadoForm.controls['cnpj'].valid&&supermercadoForm.controls['cnpj'].dirty"></p-message>
+            </div>
+
+            <div class="p-col-4 p-lg-4 p-md-4 p-sm-4">
+                <label>Logo:</label>
+                <input type="text" pInputText formControlName="descricao"/>
+                <p-message severity="error" text="Logo é obrigatório" *ngIf="!supermercadoForm.controls['descricao'].valid&&supermercadoForm.controls['descricao'].dirty"></p-message>
+            </div>
+
+            <div class="p-col-4 p-lg-4 p-md-4 p-sm-4">
+                <label>CEP *:</label>
+                <input type="text" pInputText type="text" formControlName="cep"/>
+                <p-message severity="error" text="CEP é obrigatório" *ngIf="!supermercadoForm.controls['cep'].valid&&supermercadoForm.controls['cep'].dirty"></p-message>
+            </div>
+
+            <div class="p-col-4 p-lg-4 p-md-4 p-sm-4">
+                <label>Endereço *:</label>
+                <input type="text" pInputText type="text" formControlName="endereco"/>
+                <p-message severity="error" text="Endereço é obrigatório" *ngIf="!supermercadoForm.controls['endereco'].valid&&supermercadoForm.controls['endereco'].dirty"></p-message>
+            </div>
+
+            <div class="p-col-4 p-lg-4 p-md-4 p-sm-4">
+                <label>Taxa de Entrega *:</label>
+                <input pInputText pInputText type="text" formControlName="taxaDeEntregaEmReais"/>
+                <p-message severity="error" text="Taxa é obrigatório" *ngIf="!supermercadoForm.controls['taxaDeEntregaEmReais'].valid&&supermercadoForm.controls['taxaDeEntregaEmReais'].dirty"></p-message>
+            </div>
+
+            <div class="p-col-4 p-lg-4 p-md-4 p-sm-4">
+                <label>Tempo Mín. de Entrega *:</label>
+                <input pInputText pInputText type="text" formControlName="tempoDeEntregaMinimoEmMinutos"/>
+                <p-message severity="error" text="Tempo min é obrigatório" *ngIf="!supermercadoForm.controls['tempoDeEntregaMinimoEmMinutos'].valid&&supermercadoForm.controls['tempoDeEntregaMinimoEmMinutos'].dirty"></p-message>
+            </div>
+
+            <div class="p-col-4 p-lg-4 p-md-4 p-sm-4">
+                <label>Tempo Máx. de Entrega *:</label>
+                <input pInputText pInputText type="text" formControlName="tempoDeEntregaMaximoEmMinutos"/>
+                <p-message severity="error" text="Tempo máx é obrigatório" *ngIf="!supermercadoForm.controls['tempoDeEntregaMaximoEmMinutos'].valid&&supermercadoForm.controls['tempoDeEntregaMaximoEmMinutos'].dirty"></p-message>
+            </div>
+
+
+            <div class="p-col-12">
+                <button pButton type="submit" style="margin-right: 10px" [disabled]="formInvalid()" label="Salvar" class="ui-button-info"></button>
+                <button pButton type="button" routerLink="/admin/supermercados" label="Cancelar" class="ui-button-secondary"></button>
+            </div>
+        </div>
+
+    </form>
+</div>

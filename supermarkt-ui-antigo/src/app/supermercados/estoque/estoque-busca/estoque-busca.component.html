@@ -1,0 +1,21 @@
+<div class="container">
+        <p-confirmDialog [style]="{width: '425px'}"></p-confirmDialog>
+        <div *ngIf="supermercado" class="p-grid">
+            <div class="p-col-12">
+                <h1>Pesquisa de Estoque do Supermercado {{supermercado.nome}}</h1>
+            </div>
+    
+            <div class="p-col-12">
+                <button pButton type="button" label="Novo item" routerLink="/supermercados/{{supermercado.id}}/estoque/novo"></button>
+            </div>
+    
+            <div class="p-col-6">
+                <input type="text" [ngModel]="inputSearch" (ngModelChange)="getItemEstoqueByNameByName($event)" pInputText placeholder="Buscar itens do estoque..."/>
+            </div>
+    
+            <div class="p-col-12">
+                <app-estoque-grade (delete)="dialogDelete($event)" [itensEstoque]="itensEstoque" [supermercado]="supermercado"></app-estoque-grade>
+            </div>
+        </div>
+    </div>
+    

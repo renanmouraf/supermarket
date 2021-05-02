@@ -1,0 +1,55 @@
+<div class="container">
+        <form autocomplete="false" [formGroup]="estoqueForm" (ngSubmit)="onSubmit(estoqueForm.value)">
+           <div class="p-grid">
+                <div class="p-col-12">
+                    <h1>Cadastro de Item do Estoque</h1>
+                </div>
+           </div>
+    
+           <div class="p-grid">
+                <div class="p-col-12">
+                    <p style="font-style:italic; font-size: 0.9em;">Os campos com o simbolo asterisco (*) são de preenchimento obrigatório</p>
+                </div>
+           </div>
+    
+            <div class="p-grid">
+                <div class="p-col-4 p-lg-4 p-md-4 p-sm-4">
+                    <label>Nome *:</label>
+                    <input type="text" pInputText formControlName="nome" maxlength="50" pattern="[a-zA-Z-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*"/>
+                    <p-message severity="error" [text]="estoqueForm.controls['nome'].errors['required'] ? 'Nome é obrigatório' : estoqueForm.controls['nome'].errors['pattern'] ? 'Só é permitido letras para esse campo' : ''"
+                            *ngIf="!estoqueForm.controls['nome'].valid&&estoqueForm.controls['nome'].dirty"></p-message>
+                </div>
+    
+                <div class="p-col-4 p-lg-4 p-md-4 p-sm-4">
+                    <label>Descrição *:</label>
+                    <input type="text" pInputText formControlName="descricao" maxlength="50"/>
+                    <p-message severity="error" text="Descrição é obrigatório" *ngIf="!estoqueForm.controls['descricao'].valid&&estoqueForm.controls['descricao'].dirty"></p-message>
+                </div>
+    
+                <div class="p-col-4 p-lg-4 p-md-4 p-sm-4">
+                    <label>Quantidade:</label>
+                    <input type="text" pInputText formControlName="quantidade"/>
+                    <p-message severity="error" text="Quantidade é obrigatório" *ngIf="!estoqueForm.controls['quantidade'].valid&&estoqueForm.controls['quantidade'].dirty"></p-message>
+                </div>
+    
+                <div class="p-col-4 p-lg-4 p-md-4 p-sm-4">
+                    <label>Preço *:</label>
+                    <input type="text" pInputText type="text" formControlName="preco"/>
+                    <p-message severity="error" text="Preço é obrigatório" *ngIf="!estoqueForm.controls['preco'].valid&&estoqueForm.controls['preco'].dirty"></p-message>
+                </div>
+    
+                <div class="p-col-4 p-lg-4 p-md-4 p-sm-4">
+                    <label>Preço promocional *:</label>
+                    <input type="text" pInputText type="text" formControlName="precoPromocional"/>
+                    <p-message severity="error" text="Preço promocional é obrigatório" *ngIf="!estoqueForm.controls['precoPromocional'].valid&&estoqueForm.controls['precoPromocional'].dirty"></p-message>
+                </div>
+    
+                <div class="p-col-12">
+                    <button pButton type="submit" style="margin-right: 10px" [disabled]="formInvalid()" label="Salvar" class="ui-button-info"></button>
+                    <button pButton type="button" routerLink="/supermercados/{{supermercadoId}}/estoque" label="Cancelar" class="ui-button-secondary"></button>
+                </div>
+            </div>
+    
+        </form>
+    </div>
+    

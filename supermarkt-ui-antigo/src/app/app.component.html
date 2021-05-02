@@ -1,0 +1,19 @@
+<header>
+    <p-toast [style]="{marginTop: '50px'}"></p-toast>
+</header>
+
+<div class="ui-g ui-fluid">
+    <app-navbar (showMenu)="showMenu = !showMenu" class="ui-g-12" style="padding: 0"></app-navbar>
+</div>
+<div id="container" style="display: inline-block; width: 100vw;">
+    <div id="sobre" >
+        <app-sidebar [hidden]="!showMenu"></app-sidebar>
+    </div>
+    <div id="abaixo" style="width: 100%;">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+    
+<footer>
+
+</footer>

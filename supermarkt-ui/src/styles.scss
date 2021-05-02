@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #404C51;
+    margin: 0px;
+ }
+ .container {
+    max-width: 1200px;
+    margin: 0 auto;
+ }
+ label {
+    font-weight: bold
+ }
+ .displayBlock {
+    display: block
+ }
+ .displayInline {
+    display: inline
+ }
+  
+ body .ui-menu {
+    padding: 0;
+    background-color: #f4f4f4 !important;
+    border: none !important;
+ }
+  
+ body .ui-menu .ui-submenu-header {
+    font-weight: 600 !important;
+ }
+  
+ body .ui-tabview .ui-tabview-panels {
+    border: 0px ;
+ }
+  
+ body .ui-tabview .ui-tabview-panels .ui-tabview-panel {
+    padding: 10px;
+ }
