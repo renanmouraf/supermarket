@@ -794,7 +794,7 @@ select * from usuario_authorities;
 
 Se cadastrar um supermercado com nome "Ultra" com a base de dados inicial, o login será "ultra4" e a senha "123456".
 
-## Desafio
+## Desafio 1
 
 O supermercado está cadastrado e é possível logar com ele, porém não é possível fazer o fluxo de compra para o supermercado cadastrado pois este não tem Tipos de Pagamento associados.
 
@@ -808,4 +808,18 @@ Também é possível fazer essa associação entre supermercado e tipo pagamento
 
 ```sql
 INSERT INTO supermercado_tipo_pagamento (supermercado_id, tipo_pagamento_id) values (4, 5);
+```
+
+## Desafio 2
+
+Crie um CRUD novo para Tipo de Pagamento usando a mesma lógica do CRUD de supermercados.
+
+A entidade `TipoPagamento.java` tem apenas 2 campos, Nome e Forma, sendo Forma um Enum fixo dentro da entidade.
+
+Todos os endpoints necessários estão em `TipoPagamentoAPI.java`.
+
+O SQL para inserir diretamente no banco seria assim:
+
+```sql
+INSERT INTO tipo_pagamento (id, nome, forma) values (8, 'Diners', 'CARTAO_CREDITO');
 ```
