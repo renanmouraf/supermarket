@@ -10,6 +10,8 @@ Selecionar as seguintes opções quando for perguntado pelo Angular CLI:
 * Angular routing? Yes
 * SCSS
 
+Selecione o modo "Strict".
+
 ## Bibliotecas
 
 ```

@@ -290,3 +290,5 @@ Observe que em **app-routing.module.ts** não temos nenhuma rota mapeada para a 
 Teste o login com o usuário "lider" e senha "123456".
 
 Vai aparecer um menu no canto esquerdo e o botão de login agora é de logout, teste o logout e note que o menu extra some.
+
+Tente logar com o usuário "admin" e senha "123456" e note que a opções do menu mudaram.
