@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 
 import com.supermarkt.infra.excecao.EntidadeNaoEncontradaException;
 import com.supermarkt.pedido.Pedido;
+import com.supermarkt.seguranca.Role.ROLES;
+import com.supermarkt.seguranca.Usuario;
+import com.supermarkt.seguranca.UsuarioServico;
 
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Delegate;
@@ -17,7 +20,8 @@ public class SupermercadoServico {
 	@Delegate
 	private final SupermercadoRepositorio supermercadoRepo;
 	private final SupermercadoMapper supermercadoMapper;
-
+	private final UsuarioServico usuarioServico;
+	
 	public List<SupermercadoDTO> lista() {
 		List<Supermercado> lista = supermercadoRepo.findAllByOrderByNomeAsc().orElseThrow(() -> new EntidadeNaoEncontradaException(Supermercado.class));
 		return supermercadoMapper.paraSupermercadoDto(lista);
@@ -55,6 +59,12 @@ public class SupermercadoServico {
 	public Supermercado adiciona(Supermercado supermercado) {
 		supermercado.setFavorito(false);
 		Supermercado supermercadoSalvo = supermercadoRepo.save(supermercado);
+		
+		Usuario usuario = new Usuario(supermercado.getNome().replaceAll("\\s+","").toLowerCase()+supermercado.getId(), "123456");
+		usuario.addRole(ROLES.SUPERMERCADO);
+		usuario = usuarioServico.salvar(usuario);
+		supermercadoSalvo.setUsuario(usuario);
+		supermercadoRepo.save(supermercadoSalvo);
 		return supermercadoSalvo;
 	}
 

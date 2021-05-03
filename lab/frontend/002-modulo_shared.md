@@ -150,8 +150,6 @@ $ ng g service shared/services/notificacao
 
 Em **src/app/shared/services/notificacao.service.ts**:
 
-//TODO: https://stackoverflow.com/questions/58988220/behaviorsubject-with-typescript-gives-error-if-initialized-with-null-as-default
-
 `notificacao.service.ts`
 ```typescript
 import { Injectable } from '@angular/core';

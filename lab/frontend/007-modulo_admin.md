@@ -781,3 +781,31 @@ export class AppRoutingModule { }
 Suba o sistema, faça login com o usuário "admin" e senha "123456".
 
 Vá no menu "Supermercados" para testar o CRUD.
+
+Observar em `SupermercadoServico.java` que o método `adiciona(Supermercado supermercado)` estabelece como padrão para o novo supermercado o usuário como sendo igual ao nome sem espaços em branco e tudo minúsculo concatenado do id e a senha é "123456".
+
+Isso pode ser verificado em `http://localhost:8080/h2` com as consultas:
+
+```sql
+select * from usuario;
+
+select * from usuario_authorities;
+```
+
+Se cadastrar um supermercado com nome "Ultra" com a base de dados inicial, o login será "ultra4" e a senha "123456".
+
+## Desafio
+
+O supermercado está cadastrado e é possível logar com ele, porém não é possível fazer o fluxo de compra para o supermercado cadastrado pois este não tem Tipos de Pagamento associados.
+
+Adicionar o campo correspondente ao tipo de pagamento aceito pelo supermercado.
+
+Estude o componente [MultiSelect](https://www.primefaces.org/primeng/showcase/#/multiselect) para fazer o link entre `TipoPagamento` e `Supermercado` através da entidade `SupermercadoTipoPagamento`.
+
+O endpoint no backend está em `SupermercadoTipoPagamentoAPI.java` mapeado para o método `adiciona(@PathVariable("idSupermercado") Long idRestaurante, @RequestBody TipoPagamento tipoPagamento)`.
+
+Também é possível fazer essa associação entre supermercado e tipo pagamento com o SQL abaixo, observando os devidos id's:
+
+```sql
+INSERT INTO supermercado_tipo_pagamento (supermercado_id, tipo_pagamento_id) values (4, 5);
+```

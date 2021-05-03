@@ -35,7 +35,6 @@ export class Erro {
 $ ng g service erros/servicos/erros
 ```
 
-//TODO: arrumar  const location = this.injector.get<LocationStrategy>(LocationStrategy as Type<LocationStrategy>);
 `erros.service.ts`
 ```typescript
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
