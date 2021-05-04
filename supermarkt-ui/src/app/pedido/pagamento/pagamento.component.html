@@ -1,0 +1,83 @@
+<div class="container">
+
+ <div class="p-grid">
+
+     <div class="p-col-12 p-lg-2">
+         <app-resumo [pedido]="pedido"></app-resumo>
+     </div>
+
+     <div *ngIf="pagamento" class="p-col-12 p-lg-10">
+
+       <form *ngIf="pagamento.situacao !== 'CRIADO'" #pagamentoForm="ngForm" (ngSubmit)="criaPagamento()">
+
+         <h3>Dados do pagamento</h3>
+
+         <div class="p-grid">
+
+
+           <div class="p-col-11">
+             <label for="tipoPagamento">Tipo de pagamento</label>
+             <div class="p-col-4" style="margin: 0px -8px">
+               <p-dropdown required id="tipoPagamento" name="tipoPagamento"
+                   [options]="tiposPagamento" [(ngModel)]="pagamento.tipoPagamento"></p-dropdown>
+             </div>
+           </div>
+
+           <div class="p-col-12 p-lg-12 p-md-12">
+             <label for="nome">Nome no cartão</label>
+             <input pInputText type="text" required id="nome" name="nome"
+               [(ngModel)]="pagamento.nome" placeholder="Nome como impresso no cartão" size="10">
+           </div>
+
+           <div class="p-col-12 p-lg-5 p-md-5">
+             <label for="numero">Número do cartão</label>
+             <input pInputText type="text" required id="numero" name="numero"
+               [(ngModel)]="pagamento.numero"
+               placeholder="0000 0000 0000 0000" size="50">
+           </div>
+
+           <div class="p-col-12 p-lg-4 p-md-4">
+             <label for="expiracao">Data de expiração</label>
+
+             <input pInputText type="month" required id="expiracao" name="expiracao"
+               [(ngModel)]="pagamento.expiracao" size="50">
+           </div>
+
+           <div class="p-col-12 p-lg-3 p-md-3">
+             <label for="codigo">Código de Segurança</label>
+
+             <input pInputText type="text" required id="codigo" name="codigo"
+               [(ngModel)]="pagamento.codigo"
+               placeholder="000" size="24">
+           </div>
+
+           <div class="p-col-12">
+             <button pButton *ngIf="!pagamento.situacao" type="submit"
+               label="Criar pagamento"></button>
+           </div>
+
+
+         </div>
+       </form>
+
+       <div *ngIf="pagamento.situacao === 'CRIADO'">
+         <dl>
+           <dt>Cartão</dt>
+           <dd>{{ pagamento.numero.substring(0, 5) }} XXXX XXXX XXXX</dd>
+           <dt>Valor</dt>
+           <dd>{{ pedido.total | currency:'BRL' }}</dd>
+         </dl>
+
+         <div class="p-grid" style="margin: 5px">
+           <div class="p-col-12" style="margin: 5px">
+             <button pButton (click)="confirmaPagamento()" label="Confirmar pagamento"
+                 style="margin-right: 10px"></button>
+             <button pButton (click)="cancelaPagamento()" label="Cancelar pagamento"></button>
+           </div>
+         </div>
+       </div>
+     </div>
+
+ </div>
+
+</div>

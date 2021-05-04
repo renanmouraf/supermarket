@@ -1,0 +1,224 @@
+<div class="container">
+
+    <div class="p-grid">
+ 
+        <div class="p-col-12 p-lg-2 p-md-2">
+ 
+            <div *ngIf="supermercadoComAvaliacao">
+                <h3>Pedido</h3>
+ 
+                <div *ngFor="let itemPedido of pedido.itens">
+                    <hr>
+                    <p>{{ itemPedido.quantidade }}x {{ itemPedido.itemEstoque.nome }}
+                        {{ calculaSubTotal(itemPedido) | currency:'BRL' }}<br>
+ 
+                        <span class="text-muted"><small>{{ itemPedido.observacao }}</small></span>
+                    </p>
+ 
+                    <div class="p-grid">
+                        <div class="p-col">
+ 
+                            <button pButton style="margin-right: 10px"
+ 
+                            (click)="editaItemDoPedido(itemPedido)"
+ 
+                            label="Editar" class="ui-button-secondary"></button>
+ 
+                            <button pButton (click)="removeItemDoPedido(itemPedido)"
+                            label="Remover" class="ui-button-secondary"></button>
+                        </div>
+                    </div>
+                </div>
+ 
+                <hr>
+ 
+                <p>Taxa de entrega:
+                {{ supermercadoComAvaliacao.supermercado.taxaDeEntregaEmReais ? (supermercadoComAvaliacao.supermercado.taxaDeEntregaEmReais | currency:'BRL') : 'Grátis' }}</p>
+                <p class="font-weight-bolder">Total: {{ totalDoPedido() | currency:'BRL' }}</p>
+                <button pButton (click)="fazPedido()" label="Fazer Pedido"></button>
+            </div>
+        </div>
+ 
+        <div class="p-col-12 p-lg-10 p-md-10">
+ 
+            <div *ngIf="supermercadoComAvaliacao">
+                <div>
+                    <div>
+ 
+                        <h2>{{supermercadoComAvaliacao.supermercado.nome | textoFavorito:supermercadoComAvaliacao.supermercado.favorito }}</h2>
+ 
+                        <p>{{ supermercadoComAvaliacao.supermercado.descricao }}</p>
+ 
+                        <p-rating [ngModel]="supermercadoComAvaliacao.mediaDasAvaliacoes" readonly="true" stars="5" [cancel]="false"></p-rating>
+ 
+                        <p>
+                            <span *ngIf="supermercadoComAvaliacao.supermercado.tempoDeEntregaMinimoEmMinutos"> Entrega: {{supermercadoComAvaliacao.supermercado.tempoDeEntregaMinimoEmMinutos}} min</span>
+ 
+                            <span *ngIf="supermercadoComAvaliacao.supermercado.tempoDeEntregaMaximoEmMinutos"> - {{supermercadoComAvaliacao.supermercado.tempoDeEntregaMaximoEmMinutos}} min</span>
+                        </p>
+                        <p>Taxa: {{ supermercadoComAvaliacao.supermercado.taxaDeEntregaEmReais | currency:'BRL' }}</p>
+ 
+                    </div>
+                </div>
+ 
+                <p-tabView>
+                    <p-tabPanel header="Produtos">
+                        <div class="p-grid">
+                            <div *ngFor="let produto of estoqueProdutos" >
+                                <div class="p-col-3" > 
+                                    <p-card header="{{produto.nome | uppercase }}"
+                                            subheader="{{produto.descricao }}"
+                                            [style]="{width: '260px'}" styleClass="ui-card-shadow">
+                                        <p *ngIf="!produto.precoPromocional"> {{produto.preco | currency:'BRL'  }}</p>
+                                        <p *ngIf="produto.precoPromocional"> De: <del> {{produto.preco | currency:'BRL'  }} </del></p>
+                                        <p *ngIf="produto.precoPromocional"> Por: {{produto.precoPromocional | currency:'BRL'  }}</p>
+ 
+                                        <p-footer>
+                                            <button pButton
+                                            (click)="escolheItem(produto)"
+                                            type="button" label="Escolher" style="margin-right: .25em"></button>
+                                        </p-footer>
+                                    </p-card>
+                                </div>
+                            </div>
+                        </div>
+                    </p-tabPanel>
+ 
+                    <p-tabPanel *ngIf="avaliacoes" header="Avaliações" rightIcon="pi pi-star">
+                                <p-rating [ngModel]="supermercadoComAvaliacao.mediaDasAvaliacoes" readonly="true" stars="5" [cancel]="false"></p-rating>
+                                <p>{{supermercadoComAvaliacao.mediaDasAvaliacoes | number:'1.1-1' }} de {{avaliacoes.length}} {{avaliacoes.length > 1 ? 'avaliações' : 'avaliação'}}</p>
+                                <div *ngFor="let avaliacao of avaliacoes">
+                                    <p>{{ avaliacao.nota }} • {{ avaliacao.comentario }}</p>
+                                </div>
+ 
+                    </p-tabPanel>
+                </p-tabView>
+            </div>
+        </div>
+ 
+    </div>
+ 
+ </div>
+ 
+ <div *ngIf="itemDoPedidoEscolhido">
+ 
+    <p-dialog header="{{ itemDoPedidoEscolhido.itemEstoque.nome }}" [(visible)]="displayModalPedido" [modal]="true"
+        [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70">
+ 
+            <form #itemDoPedidoEscolhidoForm="ngForm" (ngSubmit)="salvaItemNoPedido()">
+ 
+                <div class="p-grid" style="margin: 5px">
+ 
+                    <div class="p-col-12" style="margin: 5px">
+                        <span class="ui-float-label">
+                                <input type="number" id="quantidade" name="quantidade"
+                                [(ngModel)]="itemDoPedidoEscolhido.quantidade" pInputText>
+                            <label for="quantidade">Quantidade</label>
+                        </span>
+                    </div>
+ 
+                    <div class="p-col-12" style="margin: 5px">
+                        <span class="ui-float-label">
+                            <textarea id="observacao" name="observacao"
+                            [(ngModel)]="itemDoPedidoEscolhido.observacao" pInputTextarea></textarea>
+                            <label for="observacao" >Observação</label>
+                        </span>
+                    </div>
+ 
+                    <div class="p-col-12" style="margin: 5px">
+                        <button pButton type="submit" style="margin-right: 10px"
+                            [disabled]="!itemDoPedidoEscolhidoForm.form.valid"
+                            label="{{adicionandoItemAoPedido ? 'Adicionar':'Atualizar'}}"></button>
+                        <button pButton type="button"
+                        (click)="showHideDialogPedido()" label="Cancelar"></button>
+                    </div>
+ 
+                </div>
+            </form>
+ 
+    </p-dialog>
+ </div>
+ 
+ <p-dialog *ngIf="pedido" header="Dados da Entrega" [(visible)]="displayModalEntrega" [modal]="true"
+    [responsive]="true">
+ 
+        <form #entregaForm="ngForm" (ngSubmit)="registraEntrega()" style="width: 250px">
+ 
+          <fieldset>
+            <legend>Dados pessoais</legend>
+ 
+            <div class="p-grid" style="margin: 5px">
+                <div class="p-col-12" style="margin: 5px">
+                    <span class="ui-float-label">
+                            <input required id="nome" name="nome" maxlength="100"
+                            [(ngModel)]="pedido.entrega.cliente.nome" pInputText>
+                            <label for="nome">Nome</label>
+                    </span>
+                </div>
+ 
+                <div class="p-col-12" style="margin: 5px">
+                    <span class="ui-float-label">
+                        <input required id="cpf" name="cpf" maxlength="15"
+                            [(ngModel)]="pedido.entrega.cliente.cpf" pInputText>
+                        <label for="cpf">CPF</label>
+                    </span>
+                </div>
+ 
+                <div class="p-col-12" style="margin: 5px">
+                    <span class="ui-float-label">
+                        <input required type="email" id="email" name="email" maxlength="100"
+                            [(ngModel)]="pedido.entrega.cliente.email" pInputText>
+                        <label for="email">Email</label>
+                    </span>
+                </div>
+ 
+ 
+                <div class="p-col-12" style="margin: 5px">
+                    <span class="ui-float-label">
+                        <input required id="telefone" name="telefone" maxlength="16"
+                            [(ngModel)]="pedido.entrega.cliente.telefone" pInputText>
+                        <label for="telefone">Telefone</label>
+                    </span>
+                </div>
+            </div>
+          </fieldset>
+ 
+          <fieldset>
+            <legend>Local de entrega</legend>
+            <div class="p-grid" style="margin: 5px">
+                <div class="p-col-12" style="margin: 5px">
+                    <span class="ui-float-label">
+                        <input required id="cep" name="cep" maxlength="10"
+                            [(ngModel)]="pedido.entrega.cep" pInputText>
+                        <label for="cep">CEP</label>
+                    </span>
+                </div>
+ 
+                <div class="p-col-12" style="margin: 5px">
+                    <span class="ui-float-label">
+                        <textarea required id="endereco" name="endereco"
+                            [(ngModel)]="pedido.entrega.endereco" pInputTextarea></textarea>
+                        <label for="endereco">Endereço</label>
+                    </span>
+                </div>
+ 
+                <div class="p-col-12" style="margin: 5px">
+                    <span class="ui-float-label">
+                        <textarea id="complemento" name="complemento"
+                            [(ngModel)]="pedido.entrega.complemento" pInputTextarea></textarea>
+                        <label for="complemento">Complemento</label>
+                    </span>
+                </div>
+            </div>
+          </fieldset>
+ 
+        
+            <div class="p-grid" style="margin: 5px">
+                <div class="p-col-12" style="margin: 5px">
+                    <button pButton type="submit" label="Confirmar" style="margin-right: 10px"></button>
+                    <button pButton type="button" (click)="showHideDialogEntrega()" label="Cancelar"></button>
+                </div>
+            </div>
+ 
+        </form>
+ </p-dialog>
