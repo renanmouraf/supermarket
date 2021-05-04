@@ -5,12 +5,13 @@ No terminal, inicializar novo projeto usando **Angular CLI 11.2.11**:
 $ ng new supermarkt-ui
 ```
 
+Selecione "N" para o modo "Strict".
+
 Selecionar as seguintes opções quando for perguntado pelo Angular CLI:
 
 * Angular routing? Yes
 * SCSS
 
-Selecione o modo "Strict".
 
 ## Bibliotecas
 
