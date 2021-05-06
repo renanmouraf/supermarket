@@ -1,5 +1,9 @@
 
+Arrumar o modal de adicionar produto e endereço
 
+Labels e campos desalinhados
+
+----
 
 Ajustar Menu quando logado.
 

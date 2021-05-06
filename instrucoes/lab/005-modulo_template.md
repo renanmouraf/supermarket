@@ -52,16 +52,16 @@ export class NavbarComponent {
 <nav class="navbar container">
     <div class="p-grid p-justify-center">
         
-        <div class="p-col-4 p-lg-4 p-md-4 p-sm-12 p-mt-3 p-pl-3">
+        <div class="p-col-4 p-lg-4 p-md-4 p-sm-4 p-mt-3 p-pl-3">
             <app-sidebar *ngIf="user" ></app-sidebar>    
         </div>
 
-        <div class="p-col-4 p-lg-4 p-md-4 p-sm-12 p-mt-3 p-text-center">
+        <div class="p-col-4 p-lg-4 p-md-4 p-sm-4 p-mt-3 p-text-center">
             <p *appTemAcesso="['ADMIN']" class="boasvindas">ADMIN!</p>
             <p *appTemAcesso="['SUPERMERCADO']" class="boasvindas">SUPERMERCADO!</p>
         </div>
 
-        <div class="p-col-4 p-lg-4 p-md-4 p-sm-12 p-mt-3 p-pr-3 p-text-right">
+        <div class="p-col-4 p-lg-4 p-md-4 p-sm-4 p-mt-3 p-pr-3 p-text-right">
             <p-button *ngIf="!user" type="button" label="Login" styleClass="ui-button-primary" routerLink="/login"></p-button>
             <p-button *ngIf="user" type="button" styleClass="ui-button-danger" label="Logout" (click)="handleLogout()"></p-button>
         </div>
