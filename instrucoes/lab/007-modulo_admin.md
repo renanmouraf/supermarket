@@ -267,91 +267,49 @@ $ ng g component admin/supermercado/supermercado-grade
 
 `supermercado-grade.component.scss`
 ```css
-.col-cnpj {
-   width: 120px;
-}
-
-.col-content-cnpj {
-   width: 120px;
-   text-align: right;
-}
-
-.col-descricao {
-   width: 110px;
-}
-
-.col-content-descricao {
-   width: 110px;
-   text-align: right;
-}
-
-.col-cep {
-   width: 130px;
-}
-
-.col-content-cep {
-   width: 130px;
-   text-align: center;
-}
-
-.col-endereco {
-   width: 100px;
-}
-
-.col-content-endereco {
-   width: 100px;
-   text-align: center;
-}
-
-.col-taxa {
-   width: 120px;
-}
-
-.col-content-taxa {
-   width: 120px;
-   text-align: center;
-}
-
-.col-tempomin {
-   width: 120px;
-}
-
-.col-content-tempomin {
-   width: 120px;
-   text-align: center;
-}
-
-.col-tempomax {
-   width: 120px;
-}
-
-.col-content-tempomax {
-   width: 120px;
-   text-align: center;
-}
-
-.col-btns {
-   width: 100px;
-}
-
-.col-content-btns {
-   text-align: center;
-   width: 100px;
-   color: #FFF;
-}
-
-.col-name {
-   width: 200px;
-}
-
-.col-content-name {
-   text-align: left;
-   width: 200px;
-}
-
+ .col-taxa {
+    width: 20%;
+ }
+ 
+ .col-content-taxa {
+    width: 20%;
+ }
+ 
+ .col-tempomin {
+    width: 20%;
+ }
+ 
+ .col-content-tempomin {
+    width: 20%;
+ }
+ 
+ .col-tempomax {
+    width: 20%;
+ }
+ 
+ .col-content-tempomax {
+    width: 20%;
+ }
+ 
+ .col-btns {
+    width: 15%;
+ }
+ 
+ .col-content-btns {
+    width: 15%;
+ }
+ 
+ .col-nome {
+    width: 25%;
+ }
+ 
+.col-content-nome {
+    width: 25%;
+ }
+ 
 .btn-editar {
-   margin-right: 5px;
-}
+    margin-right: 5px;
+ }
 ```
 
 `supermercado-grade.component.ts`
@@ -380,43 +338,37 @@ export class SupermercadoGradeComponent {
 
 `supermercado-grade.component.html`
 ```html
-<p-table [value]="supermercados" [paginator]="true" [rows]="5" [scrollable]="true">
+<p-table [value]="supermercados" [paginator]="true" [rows]="5" >
 
-   <ng-template pTemplate="header">
-       <tr>
-           <th class="col-btns"></th>
-           <th class="col-name">Nome</th>
-           <th class="col-cnpj">CNPJ</th>
-           <th class="col-cep">CEP</th>
-           <th class="col-endereco">Endereço</th>
-           <th class="col-taxa">Taxa de Entrega</th>
-           <th class="col-tempomin">Tempo Mín. de Entrega</th>
-           <th class="col-tempomax">Tempo Máx. de Entrega</th>
-       </tr>
-   </ng-template>
-
-   <ng-template pTemplate="body" let-supermercado>
-       <tr>
-
-           <td class="col-content-btns">
-               <p-button class="btn-editar" icon="pi pi-pencil" pTooltip="Editar" [routerLink]="['/admin/supermercados', supermercado.id]" tooltipPosition="bottom"></p-button>
-               <p-button icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="bottom" (onClick)="handleDelete(supermercado)"></p-button>
-           </td>
-
-           <td class="col-content-name">{{supermercado.nome | titlecase}}</td>
-           <td class="col-content-cnpj">{{supermercado.cnpj}}</td>
-           <td class="col-content-cep">{{supermercado.cep}}</td>
-           <td class="col-content-endereco">{{supermercado.endereco}}</td>
-           <td class="col-content-taxa">{{supermercado.taxaDeEntregaEmReais | currency:'BRL':'symbol':'1.2-2'}}</td>
-           <td class="col-content-tempomin">{{supermercado.tempoDeEntregaMinimoEmMinutos}}</td>
-           <td class="col-content-tempomax">{{supermercado.tempoDeEntregaMaximoEmMinutos}}</td>
-       </tr>
-   </ng-template>
-
-   <ng-template pTemplate="emptymessage">
-       Nenhum registro encontrado.
-   </ng-template>
-
+    <ng-template pTemplate="header" >
+        <tr>
+            <th class="col-btns"></th>
+            <th class="col-nome">Nome</th>
+            <th class="col-taxa">Taxa de Entrega</th>
+            <th class="col-tempomin">Tempo Mín. de Entrega</th>
+            <th class="col-tempomax">Tempo Máx. de Entrega</th>
+        </tr>
+    </ng-template>
+ 
+    <ng-template pTemplate="body" let-supermercado>
+        <tr>
+ 
+            <td class="col-content-btns">
+                <p-button class="btn-editar" icon="pi pi-pencil" pTooltip="Editar" [routerLink]="['/admin/supermercados', supermercado.id]" tooltipPosition="bottom"></p-button>
+                <p-button icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="bottom" (onClick)="handleDelete(supermercado)"></p-button>
+            </td>
+ 
+            <td class="col-content-nome">{{supermercado.nome | titlecase}}</td>
+            <td class="col-content-taxa">{{supermercado.taxaDeEntregaEmReais | currency:'BRL':'symbol':'1.2-2'}}</td>
+            <td class="col-content-tempomin">{{supermercado.tempoDeEntregaMinimoEmMinutos}}</td>
+            <td class="col-content-tempomax">{{supermercado.tempoDeEntregaMaximoEmMinutos}}</td>
+        </tr>
+    </ng-template>
+ 
+    <ng-template pTemplate="emptymessage">
+        Nenhum registro encontrado.
+    </ng-template>
+ 
 </p-table>
 ```
 
