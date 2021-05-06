@@ -10,6 +10,14 @@ No Crud de Supermercados:
 * arrumar alinhamento do Grid.
 
 -----
-TESTAR o comportamento do sistema só com CRUD do supermercado.
+TESTAR o fluxo do pedido só com CRUD do supermercado.
 Qual erro dá?
 O componente de captura de erro funciona?
+
+----
+sidebar.component.html
+
+Template Reference Vars vs Directives 
+
+
+https://medium.com/angular-in-depth/handle-template-reference-variables-with-directives-223081bc70c2

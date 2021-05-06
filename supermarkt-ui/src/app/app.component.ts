@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
 
  title = 'supermarkt-ui';
  user: Autenticacao;
- showMenu = false;
  notification: Message;
  showNotification: boolean;
 

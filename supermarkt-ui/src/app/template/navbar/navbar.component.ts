@@ -9,8 +9,6 @@ import { Autenticacao } from 'src/app/shared/modelos/autenticacao';
 
 export class NavbarComponent {
 
- @Output() showMenu: EventEmitter<any> = new EventEmitter();
-
  @Output() logout = new EventEmitter();
 
  @Input() user: Autenticacao;
@@ -21,8 +19,4 @@ export class NavbarComponent {
    this.logout.emit();
  }
 
- toggle(): void {
-   this.showMenu.emit();
- }
- 
 }

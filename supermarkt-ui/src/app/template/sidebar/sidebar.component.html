@@ -1,2 +1,3 @@
-<p-menu *appTemAcesso="['ADMIN']" [model]="itensAdmin"></p-menu>
-<p-menu *appTemAcesso="['SUPERMERCADO']" [model]="itensSupermercado"></p-menu>
+<button type="button" pButton icon="pi pi-bars" label="" (click)="menu.toggle($event)"></button>
+
+<p-menu #menu [popup]="true" [model]="itens"></p-menu>

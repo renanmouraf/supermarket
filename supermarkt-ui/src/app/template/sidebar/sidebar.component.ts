@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Autenticacao } from '../../shared/modelos/autenticacao';
 import { AutenticacaoService } from '../../shared/services/autenticacao.service';
@@ -11,25 +11,26 @@ import { AutenticacaoService } from '../../shared/services/autenticacao.service'
 
 export class SidebarComponent implements OnInit {
 
-  itensAdmin: MenuItem[];
-  itensSupermercado: MenuItem[];
+  itens: MenuItem[];
   user: Autenticacao;
 
-  constructor(private autenticacaoService: AutenticacaoService) {}
+  constructor(private autenticacaoService: AutenticacaoService,
+            private element: ElementRef) {}
 
   ngOnInit(): void {
       this.autenticacaoService.currentUser.subscribe(user => {
 
               this.user = user;
 
-              if (this.user) {
-                  this.itensAdmin = [{
+              if (this.user && this.autenticacaoService.hasRole(['ADMIN'])) {
+                  this.itens = [{
                       label: 'Administrador',
                       items: [
                           {label: 'Supermercados', icon: '',  routerLink: '/admin/supermercados'}
                       ]
                   }];
-                  this.itensSupermercado = [{
+                } else if (this.user && this.autenticacaoService.hasRole(['SUPERMERCADO'])) {
+                  this.itens = [{
                       label: 'Supermercado',
                       items: [
                           {label: 'Pedidos', icon: '',  routerLink: '/supermercados/' +  this.user.targetId + '/pedidos/pendentes'},

@@ -154,21 +154,8 @@ export class AppRoutingModule { }
 `app.component.scss`
 ```css
 #container {
-   width: 100px;
-   height: 100px;
-   position: relative;
-}
-
-#abaixo,
-#sobre {
-   position: absolute;
-   top: 0;
-   left: 0;
-}
-
-#sobre {
-   z-index: 10;
-}
+    position: relative;
+ }
 ```
 
 `app.component.ts`
@@ -190,7 +177,6 @@ export class AppComponent implements OnInit {
 
  title = 'supermarkt-ui';
  user: Autenticacao;
- showMenu = false;
  notification: Message;
  showNotification: boolean;
 
@@ -222,24 +208,16 @@ export class AppComponent implements OnInit {
 `app.component.html`
 ```html
 <header>
-   <p-toast [style]="{marginTop: '50px'}"></p-toast>
+  <p-toast [style]="{marginTop: '50px'}"></p-toast>
 </header>
 
- <div class="ui-g ui-fluid">
-   <app-navbar [user]="user" (logout)="logout($event)" (showMenu)="showMenu = !showMenu" class="ui-g-12" style="padding: 0"></app-navbar>
+<div >
+  <app-navbar [user]="user" (logout)="logout($event)"></app-navbar>
 </div>
 
-<div id="container" style="display: inline-block; width: 100vw;">
-   <div id="sobre" >
-       <app-sidebar [hidden]="!showMenu"></app-sidebar>
-   </div>
-   <div id="abaixo" style="width: 100%;">
-       <router-outlet></router-outlet>
-   </div>
+<div id="container">
+      <router-outlet></router-outlet>
 </div>
- 
-<footer>
-</footer>
 ```
 
 Novamente, vamos ajustar o **app.module.ts** com o que foi modificado até aqui, adicionando o TemplateModule, ToastModule e BrowserAnimationsModule.

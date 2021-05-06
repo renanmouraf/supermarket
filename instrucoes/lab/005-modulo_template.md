@@ -13,12 +13,11 @@ $ ng g component template/navbar
 `navbar.component.scss`
 ```css
 .navbar {
-   padding: 10px 0;
-   background-color: black
-}
-
-.navbar-toogle {
-   color: white
+    background-color: black
+ }
+ 
+.boasvindas {
+    color: white
 }
 ```
 
@@ -35,8 +34,6 @@ import { Autenticacao } from 'src/app/shared/modelos/autenticacao';
 
 export class NavbarComponent {
 
- @Output() showMenu: EventEmitter<any> = new EventEmitter();
-
  @Output() logout = new EventEmitter();
 
  @Input() user: Autenticacao;
@@ -47,27 +44,28 @@ export class NavbarComponent {
    this.logout.emit();
  }
 
- toggle(): void {
-   this.showMenu.emit();
- }
-
 }
 ```
 
 `navbar.component.html`
 ```html
-<nav class="navbar">
-    <div class="p-grid ">
-        <div class="p-col-9">
-            <p-button type="button" icon="pi pi-bars" (click)="toggle()"></p-button>
+<nav class="navbar container">
+    <div class="p-grid">
+        <div class="p-col-10 p-lg-2 p-md-2 p-p-3">
+            <app-sidebar *ngIf="user" ></app-sidebar>    
         </div>
- 
-        <div class="p-col-1">
+
+        <div class="p-col-1 p-md-2 p-lg-2">
+            <p *appTemAcesso="['ADMIN']" class="boasvindas">ADMIN!</p>
+            <p *appTemAcesso="['SUPERMERCADO']" class="boasvindas">SUPERMERCADO!</p>
+        </div>
+
+        <div class="p-col-1 p-lg-2 p-md-2 p-p-2">
             <p-button *ngIf="!user" type="button" label="Login" styleClass="ui-button-primary" routerLink="/login"></p-button>
- 
             <p-button *ngIf="user" type="button" styleClass="ui-button-danger" label="Logout" (click)="handleLogout()"></p-button>
         </div>
     </div>
+
 </nav>
 ```
 
@@ -81,7 +79,7 @@ O **sidebar.component.scss** fica vazio.
 
 `sidebar.component.ts`
 ```typescript
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Autenticacao } from '../../shared/modelos/autenticacao';
 import { AutenticacaoService } from '../../shared/services/autenticacao.service';
@@ -94,25 +92,26 @@ import { AutenticacaoService } from '../../shared/services/autenticacao.service'
 
 export class SidebarComponent implements OnInit {
 
-  itensAdmin: MenuItem[];
-  itensSupermercado: MenuItem[];
+  itens: MenuItem[];
   user: Autenticacao;
 
-  constructor(private autenticacaoService: AutenticacaoService) {}
+  constructor(private autenticacaoService: AutenticacaoService,
+            private element: ElementRef) {}
 
   ngOnInit(): void {
       this.autenticacaoService.currentUser.subscribe(user => {
 
               this.user = user;
 
-              if (this.user) {
-                  this.itensAdmin = [{
+              if (this.user && this.autenticacaoService.hasRole(['ADMIN'])) {
+                  this.itens = [{
                       label: 'Administrador',
                       items: [
                           {label: 'Supermercados', icon: '',  routerLink: '/admin/supermercados'}
                       ]
                   }];
-                  this.itensSupermercado = [{
+                } else if (this.user && this.autenticacaoService.hasRole(['SUPERMERCADO'])) {
+                  this.itens = [{
                       label: 'Supermercado',
                       items: [
                           {label: 'Pedidos', icon: '',  routerLink: '/supermercados/' +  this.user.targetId + '/pedidos/pendentes'},
@@ -127,8 +126,9 @@ export class SidebarComponent implements OnInit {
 
 `sidebar.component.html`
 ```typescript
-<p-menu *appTemAcesso="['ADMIN']" [model]="itensAdmin"></p-menu>
-<p-menu *appTemAcesso="['SUPERMERCADO']" [model]="itensSupermercado"></p-menu>
+<button type="button" pButton icon="pi pi-bars" label="" (click)="menu.toggle($event)"></button>
+
+<p-menu #menu [popup]="true" [model]="itens"></p-menu>
 ```
 
 Por fim, o arquivo template.module.ts:
