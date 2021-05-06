@@ -153,7 +153,7 @@ export class AppRoutingModule { }
 
 `app.component.scss`
 ```css
-#container {
+#main {
     position: relative;
  }
 ```
@@ -215,7 +215,7 @@ export class AppComponent implements OnInit {
   <app-navbar [user]="user" (logout)="logout($event)"></app-navbar>
 </div>
 
-<div id="container">
+<div id="main">
       <router-outlet></router-outlet>
 </div>
 ```
