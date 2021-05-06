@@ -1,13 +1,4 @@
-
-Arrumar o modal de adicionar produto e endereço
-
-Labels e campos desalinhados
-
-----
-
-Ajustar Menu quando logado.
-
-Centralizar página?
+Mudar mensagem de favorito para desfavoritar
 ---------------
 No Crud de Supermercados: 
 * ao salvar, redirecionar para a grade
