@@ -42,7 +42,8 @@ export class ListaSupermercadosComponent implements OnInit {
  favoritar(supermercado: Supermercado): void {
    supermercado.favorito = supermercado.favorito ? false : true;
    this.supermercadoService.favoritar(supermercado).subscribe( () => {
-       this.notificaoServico.notificar({severity: 'success', summary: 'Sucesso', detail: 'Supermercado favoritado.'});
+       this.notificaoServico.notificar({severity: 'success', summary: 'Sucesso', 
+       detail: supermercado.favorito ? 'Supermercado favoritado.' : 'Supermercado desfavoritado.'});
      }
    );
  }
