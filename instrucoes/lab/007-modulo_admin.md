@@ -399,7 +399,7 @@ input[type=text] {
 ```typescript
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NotificacaoService } from 'src/app/shared/services/notificacao.service';
 import { Supermercado } from '../modelos/supermercado';
 import { SupermercadoService } from '../servicos/supermercado.service';
@@ -420,7 +420,8 @@ export class SupermercadoFormularioComponent implements OnInit {
    private fb: FormBuilder,
    private notificaoServico: NotificacaoService,
    private supermercadoService: SupermercadoService,
-   private route: ActivatedRoute
+   private route: ActivatedRoute,
+   private router: Router
  ) { }
 
  ngOnInit(): void {
@@ -458,6 +459,7 @@ export class SupermercadoFormularioComponent implements OnInit {
      .subscribe(
        () => {
          this.supermercadoForm.reset();
+         this.router.navigateByUrl(`admin/supermercados`);
          this.notificaoServico.notificar({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
        },
        erro => {

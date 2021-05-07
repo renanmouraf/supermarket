@@ -4,10 +4,7 @@ No Crud de Supermercados:
 * ao salvar, redirecionar para a grade
 * arrumar alinhamento do Grid.
 
------
-TESTAR o fluxo do pedido só com CRUD do supermercado.
-Qual erro dá?
-O componente de captura de erro funciona?
+
 
 ----
 sidebar.component.html
