@@ -91,7 +91,7 @@ constructor(
     let time = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     time += `-${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
     const id = `${appId}-${user}-${time}`;
-    const location = this.injector.get<LocationStrategy>(LocationStrategy as Type<LocationStrategy>);
+    const location = this.injector.get(LocationStrategy);
     const url = location instanceof PathLocationStrategy ? location.path() : '';
     const status = error.status || undefined;
     const message = error.message || error.toString();
