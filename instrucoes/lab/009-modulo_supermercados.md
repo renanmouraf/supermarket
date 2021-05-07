@@ -283,3 +283,5 @@ INSERT INTO item_estoque (
   supermercado_id
 ) values (90, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 4);
 ```
+
+Com isso, é possível fazer o cadastro de um supermercado novo e realizar o fluxo de pedido com esse novo supermercado com sucesso.
