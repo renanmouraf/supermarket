@@ -152,9 +152,9 @@ export class PedidoPendenteComponent implements OnInit, OnDestroy {
    </div>
 </div>
 
-<div *ngIf="!pendentes?.length">
-   <h2>Não há pedidos pendentes</h2>
-</div>
+ <div class="container p-grid p-col-12 p-lg-9 p-md-9" *ngIf="!pendentes?.length">
+    <h2>Não há pedidos pendentes</h2>
+ </div>
 ```
 
 ## Supermercados Routing e Module
