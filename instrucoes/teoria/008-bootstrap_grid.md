@@ -1,4 +1,4 @@
-# Bootstrap 4 Grid system
+# Bootstrap Grid system
 
 O Grid do Bootstrap permite até 12 colunas.
 
@@ -10,7 +10,7 @@ O sistema de grid é responsivo e, se for usado corretamente, as colunas se rear
 
 ## Classes
 
-O Bootstrap 4 tem cinco classes:
+O Bootstrap tem cinco classes:
 
 
 * .col- (dispositivos muito pequenos, menos que 576px)
@@ -323,7 +323,7 @@ Vamos testar alguns layouts com um editor online como o https://html5-editor.net
 <body>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
- <h1>Página usando Bootstrap 4</h1>
+ <h1>Página usando Bootstrap</h1>
 </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
