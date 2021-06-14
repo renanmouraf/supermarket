@@ -10,9 +10,9 @@ $ ng g module shared
 
 Criar o módulo pipes que dentro de shared que vai conter os pipes que vamos usar na aplicação.
 
-
+```
 $ ng g module shared/pipes
-
+```
 
 Vamos criar agora o primeiro pipe como abaixo, que vai ser usado para apensar um ícone de coração para o supermercado quando este for favoritado.
 
