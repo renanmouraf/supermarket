@@ -130,7 +130,7 @@ O resultado é uma aplicação muito mais rápida e mais difícil de aplicar eng
 Agora vamos rodar o comando:
 
 ```
-$ ng build --prod --aot=true
+$ ng build --configuration production --aot=true
 ```
 
 Na pasta `/dist` a diferença nos arquivos gerados são muitas. Não há mais arquivos `.map`. 
