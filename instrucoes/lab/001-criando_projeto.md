@@ -1,5 +1,12 @@
 # Criando um novo projeto
-No terminal, inicializar novo projeto usando **Angular CLI 11.2.11**:
+
+Pré-requisitos:
+
+* **npm versão 6.14.13**
+* **node versão v14.17.0**
+* **Angular CLI 11.2.11**
+
+No terminal, inicializar novo projeto usando angular CLI:
 
 ```
 $ ng new supermarkt-ui
