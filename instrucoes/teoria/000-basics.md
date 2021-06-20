@@ -79,6 +79,8 @@ Você simplesmente adiciona binding à sua marcação nos templates que você cr
 
 A vinculação de dados pode ser unilateral ou bidirecional.
 
+[https://angular.io/guide/binding-syntax#types-of-data-binding](https://angular.io/guide/binding-syntax#types-of-data-binding)
+
 ### Diretivas
 
 As diretivas, em essência, são comandos que você dá ao Angular. 
