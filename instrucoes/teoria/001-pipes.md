@@ -62,7 +62,7 @@ export class TextoFavoritoPipe implements PipeTransform {
 }
 ```
 
-Note que a linha de import trás o Pipe e o PipeTransform de angular core.
+Note que a linha de import traz o Pipe e o PipeTransform de angular core.
 
 Em seguida, note a declaração @Pipe com o nome especificado. Como em muitas classes Angular, o export garante que o pipe seja usado em outras classes em sua aplicação Angular.
 
